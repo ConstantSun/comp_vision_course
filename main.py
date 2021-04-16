@@ -55,7 +55,7 @@ def parse_args():
     parser.add_argument('--cardinality', type=int, required=False)
 
     # run config
-    parser.add_argument('--outdir', type=str, default="." , required=True)
+    parser.add_argument('--outdir', type=str, default="." , required=False)
     parser.add_argument('--seed', type=int, default=17)
     parser.add_argument('--num_workers', type=int, default=7)
 
