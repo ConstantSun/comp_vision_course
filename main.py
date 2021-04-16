@@ -50,12 +50,12 @@ def str2bool(s):
 def parse_args():
     parser = argparse.ArgumentParser()
     # model config
-    parser.add_argument('--depth', type=int, required=True)
-    parser.add_argument('--base_channels', type=int, required=True)
-    parser.add_argument('--cardinality', type=int, required=True)
+    parser.add_argument('--depth', type=int, required=False)
+    parser.add_argument('--base_channels', type=int, required=False)
+    parser.add_argument('--cardinality', type=int, required=False)
 
     # run config
-    parser.add_argument('--outdir', type=str, required=True)
+    parser.add_argument('--outdir', type=str, default="." , required=True)
     parser.add_argument('--seed', type=int, default=17)
     parser.add_argument('--num_workers', type=int, default=7)
 
