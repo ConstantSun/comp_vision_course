@@ -62,7 +62,7 @@ def parse_args():
     # optim config
     parser.add_argument('--epochs', type=int, default=300)
     parser.add_argument('--batch_size', type=int, default=128)
-    parser.add_argument('--base_lr', type=float, default=0.1)
+    parser.add_argument('--base_lr', type=float, default=0.0001)
     parser.add_argument('--weight_decay', type=float, default=5e-4)
     parser.add_argument('--momentum', type=float, default=0.9)
     parser.add_argument('--nesterov', type=str2bool, default=True)
@@ -325,19 +325,19 @@ def main():
         loss_te, acc_te = test(epoch, model, criterion, test_loader, run_config,
                         writer)
 
-        file_test_acc = open('drive/My Drive/result_resNext/test_acc.txt',"a") 
+        file_test_acc = open('/content/drive/MyDrive/result_resNext/test_acc.txt',"a")
         file_test_acc.write(str(int(acc_te*10000))+', ') 
         file_test_acc.close()
 
-        file_test_loss = open('drive/My Drive/result_resNext/test_loss.txt',"a") 
+        file_test_loss = open('/content/drive/MyDrive/result_resNext/test_loss.txt',"a")
         file_test_loss.write(str(int(loss_te*10000))+', ') 
         file_test_loss.close()
 
-        file_train_acc = open('drive/My Drive/result_resNext/train_acc.txt',"a") 
+        file_train_acc = open('/content/drive/MyDrive/result_resNext/train_acc.txt',"a")
         file_train_acc.write(str(int(acc_tr*10000))+', ') 
         file_train_acc.close()
 
-        file_train_loss = open('drive/My Drive/result_resNext/train_loss.txt',"a") 
+        file_train_loss = open('/content/drive/MyDrive/result_resNext/train_loss.txt',"a")
         file_train_loss.write(str(int(loss_tr*10000))+', ') 
         file_train_loss.close()
 
