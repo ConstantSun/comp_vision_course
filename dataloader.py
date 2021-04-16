@@ -9,31 +9,22 @@ import torchvision
 import torchvision.models
 import torchvision.transforms
 import timm
-model = timm.create_model("eca_nfnet_l0", pretrained=True, num_classes=10 )
-
-config = model.default_cfg
-img_size = config["test_input_size"][-1] if "test_input_size" in config else config["input_size"][-1]
-
 
 
 def get_loader(batch_size, num_workers):
     mean = np.array([0.4914, 0.4822, 0.4465])
     std = np.array([0.2470, 0.2435, 0.2616])
 
-    train_transform = timm.data.transforms_factory.transforms_imagenet_eval(
-        img_size=img_size,
-        interpolation=config["interpolation"],
-        mean=config["mean"],
-        std=config["std"],
-        crop_pct=config["crop_pct"],
-    )
-    test_transform = timm.data.transforms_factory.transforms_imagenet_eval(
-        img_size=img_size,
-        interpolation=config["interpolation"],
-        mean=config["mean"],
-        std=config["std"],
-        crop_pct=config["crop_pct"],
-    )
+    train_transform = torchvision.transforms.Compose([
+        torchvision.transforms.RandomCrop(32, padding=4),
+        torchvision.transforms.RandomHorizontalFlip(),
+        torchvision.transforms.ToTensor(),
+        torchvision.transforms.Normalize(mean, std),
+    ])
+    test_transform = torchvision.transforms.Compose([
+        torchvision.transforms.ToTensor(),
+        torchvision.transforms.Normalize(mean, std),
+    ])
 
     dataset_dir = '~/.torchvision/datasets/CIFAR10'
     train_dataset = torchvision.datasets.CIFAR10(
