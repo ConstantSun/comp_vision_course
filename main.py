@@ -292,7 +292,7 @@ def main():
                                            run_config['num_workers'])
 
     # model
-    model = timm.create_model("eca_nfnet_l0", pretrained=True, num_classes=10 )
+    model = timm.create_model("eca_nfnet_l1", pretrained=True, num_classes=10 )
 
     model.cuda()
     n_params = sum([param.view(-1).size()[0] for param in model.parameters()])
